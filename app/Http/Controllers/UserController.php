@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $value = User::all();
+        $value = Auth::user();
         return view('user', [
-            'name' => $value[0]['name'],
-            'email' => $value[0]['email'],
-            'id' => $value[0]['id'],
+            'name' => $value->name,
+            'email' => $value->email,
+            'id' => $value->id,
         ]);
     }
 }
